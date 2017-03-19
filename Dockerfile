@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
 	git \
 	unzip \
 	curl \
+	wget \
 	&& rm -rf /var/lib/apt/lists/* && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/  &&  \
     docker-php-ext-install gd
@@ -39,7 +40,7 @@ WORKDIR /var/www/html
 
 # Install sspanel
 #RUN git clone -b 4.x-dev https://github.com/orvice/ss-panel.git /var/www/html
-RUN curl https://github.com/orvice/docker-cfg/archive/master.zip && unzip master.zip -d /var/www/html
+RUN wget https://github.com/orvice/docker-cfg/archive/master.zip && unzip master.zip -d /var/www/html
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
